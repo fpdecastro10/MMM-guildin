@@ -8,13 +8,13 @@ import matplotlib.pyplot as plt
 from apps.app1 import dataframe_to_markdown
 from scipy.stats import zscore
 from datetime import datetime
-# import zipfile
+import zipfile
 from src.mmm_shap import list_investment_store_group, calculated_shape_values
 from src.mmm_shap import sale_simulation_sg
 
-# zip_file_path = "dataset_to_detect_performance_of_stores.csv.zip"
-# with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-#     zip_ref.extractall(".")
+zip_file_path = "datasets/dataset_to_detect_performance_of_stores.csv.zip"
+with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+    zip_ref.extractall("datasets/")
 
 
 plt.style.use({
