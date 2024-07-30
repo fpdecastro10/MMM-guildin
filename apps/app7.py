@@ -6,20 +6,34 @@ from src.update_db.update_local_db import write_query_to_dataset
 from src.update_db.update_local_db import TABLES, TABLES_SALES
 from src.update_db.dict_queries import DATASET_DATE
 import time
+import requests
+
+def get_public_ip():
+    try:
+        response = requests.get('https://api.ipify.org?format=json')
+        response.raise_for_status()  # Verifica que la solicitud fue exitosa
+        ip_info = response.json()
+        return ip_info['ip']
+    except requests.RequestException as e:
+        print(f"Error obteniendo la IP pública: {e}")
+        return None
 
 
 def update_db_local_with_each_table():
     placeholder = st.container().empty()
     index_progress = 0
     progress_bar = st.progress(index_progress)
-
-    with placeholder:
-        for table in TABLES:
-            result = update_db_local_guilding(table)
-            st.write(result)
-            index_progress += 1
-            progress_bar.progress(index_progress / len(TABLES))
-            time.sleep(0.3)
+    try:
+        with placeholder:
+            for table in TABLES:
+                result = update_db_local_guilding(table)
+                st.write(result)
+                index_progress += 1
+                progress_bar.progress(index_progress / len(TABLES))
+                time.sleep(0.3)
+    except Exception as e:
+        st.write(f"Error: {e}")
+        st.write(f"Error: agregue el ip {get_public_ip()} a la lista de permitidos en el servidor")
 
 
 def update_importador_sales_all():
