@@ -6,11 +6,6 @@ import sqlite3
 import csv
 import os
 
-# Setting source connection
-HOSTS = "198.57.216.119"
-USERS = "guildinc_jorge_ai"
-PWDS = "enzoperez2018"
-NAME_DATABASES = "guildinc_campaign_data"
 
 HOSTS = os.getenv("HOSTS")
 USERS = os.getenv("USERS")
