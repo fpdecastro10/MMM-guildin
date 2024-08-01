@@ -30,7 +30,6 @@ class UpdateInfoModel:
 
         data_uploaded = []
         if dict_convertion_prefix[type] in self.json[prefix]["campaigns_list"][campaign_key]:
-            st.write(self.json[prefix]["campaigns_list"][campaign_key][dict_convertion_prefix[type]])
             for period in self.json[prefix]["campaigns_list"][campaign_key][dict_convertion_prefix[type]]:
                 data_uploaded.append([period["start_date"], period["end_date"]])
 
