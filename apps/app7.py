@@ -32,7 +32,6 @@ def update_db_local_with_each_table():
                 progress_bar.progress(index_progress / len(TABLES))
                 time.sleep(0.3)
     except Exception as e:
-        st.write(f"Error: {e}")
         st.write(f"Error: agregue el ip {get_public_ip()} a la lista de permitidos en el servidor")
 
 

@@ -93,7 +93,7 @@ def train_model(campaign_key, sg_key):
         st.write("📊 Optimizando modelo 🔍")
         prophet = Prophet(yearly_seasonality=True)
         prophet.fit(table_prophet_index)
-        with open(f"models/{sg_key}.pkl", 'wb') as f:
+        with open(f"models/trained_models/{sg_key}.pkl", 'wb') as f:
             pickle.dump(prophet, f)
         prophet_predict = prophet.predict(table_prophet_index)
 

@@ -73,8 +73,7 @@ def update_db_local_guilding(table_name):
         "user": USERS,
         "password": PWDS,
         "database": NAME_DATABASES,
-        "port":PORTS,
-        
+        "port":PORTS
     }
 
     source_connector = mysql.connector.connect(**source_config)
