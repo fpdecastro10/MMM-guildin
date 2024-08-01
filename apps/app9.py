@@ -9,7 +9,7 @@ from prophet import Prophet
 from sklearn.model_selection import TimeSeriesSplit
 
 
-data_whole_sg_wp = pd.read_csv('datasetCampignSalesNew.csv')
+data_whole_sg_wp = pd.read_csv('datasets/datasetCampignSalesNew.csv')
 data_whole_sg_wp["concat_store_group_name"] = data_whole_sg_wp["store_group_id"].astype(str) + " - " + data_whole_sg_wp["name"]
 data_whole_sg_wp['tabla_medio'] = data_whole_sg_wp['tabla_medio'].fillna('No Campaign')
 data_whole_sg_wp['cost_campaign'] = data_whole_sg_wp['cost_campaign'].fillna(0)
@@ -47,7 +47,7 @@ def train_model(campaign_key, sg_key):
         with open(model_info_file, "r") as archivo:
             model_info = json.load(archivo)
 
-        parameters_sg = 'parameter_sg.json'
+        parameters_sg = 'models/parameter_sg.json'
         with open(parameters_sg, "r") as archivo:
             params_adstock = json.load(archivo)
 
@@ -187,4 +187,3 @@ def main():
 
     if st.sidebar.button("Entrenar modelo"):
         train_model(selected_campaign, selected_sg)
-        st.write("Modelo entrenado exitosamente")

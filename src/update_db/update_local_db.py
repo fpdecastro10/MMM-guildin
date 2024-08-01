@@ -11,6 +11,7 @@ HOSTS = os.getenv("HOSTS")
 USERS = os.getenv("USERS")
 PWDS = os.getenv("PWDS")
 NAME_DATABASES = os.getenv("NAME_DATABASES")
+PORTS = os.getenv("PORTS")
 
 
 TABLES = [
@@ -71,7 +72,9 @@ def update_db_local_guilding(table_name):
         "host": HOSTS,
         "user": USERS,
         "password": PWDS,
-        "database": NAME_DATABASES
+        "database": NAME_DATABASES,
+        "port":PORTS,
+        
     }
 
     source_connector = mysql.connector.connect(**source_config)

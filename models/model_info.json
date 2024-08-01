@@ -1,286 +1,274 @@
 {
-    "LFX" :{
+    "LFX": {
         "multiple_campaign": 0,
-        "campaigns_list" : [
-            {
-                "LFX_STAGEI" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202001",
-                            "end_date" : "202152"
-                        },
-                        {
-                            "start_date" : "202227",
-                            "end_date" : "202246"
-                        }
-                    ],
-                    "campaign": [
-                        {
-                        "start_date" : "202201",
-                        "end_date" : "202226"
-                        }
-                    ]
-                }
+        "campaigns_list": {
+            "LFX_STAGEI": {
+                "no_campaign": [
+                    {
+                        "start_date": "202001",
+                        "end_date": "202152"
+                    },
+                    {
+                        "start_date": "202227",
+                        "end_date": "202246"
+                    }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202201",
+                        "end_date": "202226"
+                    }
+                ]
             }
-        ]
-    }
-    ,
+        }
+    },
     "MS": {
         "multiple_campaign": 1,
-        "campaigns_list" : [
-            {
-                "MS_STAGEI" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202135",
-                            "end_date" : "202220"
-                        }
-                    ]
-                }
-            },
-            {
-                "MS_STAGEII" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202135",
-                            "end_date" : "202220"
-                        }
-                    ],
-                    "campaign":[
-                        {
-                            "start_date" : "202221",
-                            "end_date" : "202245"
-                        }
-                    ]
-                }
-            },
-            {
-                "MS_STAGEIII" : {
-                    "no_campaign" :[
-                        {
-                            "start_date" : "202135",
-                            "end_date" : "202220"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date" : "202245",
-                        "end_date" : "202301"
+        "campaigns_list": {
+            "MS_STAGEI": {
+                "no_campaign": [
+                    {
+                        "start_date": "202135",
+                        "end_date": "202220"
                     }
-                }
+                ]
             },
-            {
-                "MS_STAGEIV" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202135",
-                            "end_date" : "202220"
-                        },
-                        {
-                            "start_date" : "202302",
-                            "end_date" : "202306"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date" : "202307",
-                        "end_date" : "202338"
+            "MS_STAGEII": {
+                "no_campaign": [
+                    {
+                        "start_date": "202135",
+                        "end_date": "202220"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202221",
+                        "end_date": "202245"
+                    }
+                ]
+            },
+            "MS_STAGEIII": {
+                "no_campaign": [
+                    {
+                        "start_date": "202135",
+                        "end_date": "202220"
+                    }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202245",
+                        "end_date": "202301"
+                    }
+                ]
+            },
+            "MS_STAGEIV": {
+                "no_campaign": [
+                    {
+                        "start_date": "202135",
+                        "end_date": "202220"
+                    },
+                    {
+                        "start_date": "202302",
+                        "end_date": "202306"
+                    }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202307",
+                        "end_date": "202338"
+                    }
+                ]
             }
-        ]
+        }
     },
-    "CICLO" : {
+    "CICLO": {
         "multiple_campaign": 0,
-        "campaigns_list" : [
-            {
-                "CICLO_STAGEI" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202201",
-                            "end_date" : "202249"
-                        }
-                    ],
-                    "campaign": {
-                        "start_date" : "202250",
-                        "end_date" : "202317"
+        "campaigns_list": {
+            "CICLO_STAGEI": {
+                "no_campaign": [
+                    {
+                        "start_date": "202201",
+                        "end_date": "202249"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202250",
+                        "end_date": "202317"
+                    }
+                ]
             }
-        ]
+        }
     },
-    "COL" : {
+    "COL": {
         "multiple_campaign": 1,
-        "campaigns_list":[
-            {
-                "COL_STAGEI" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202201",
-                            "end_date": "202238"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date":"202239",
-                        "end_date":"202247"
+        "campaigns_list": {
+            "COL_STAGEI": {
+                "no_campaign": [
+                    {
+                        "start_date": "202201",
+                        "end_date": "202238"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202239",
+                        "end_date": "202247"
+                    }
+                ]
             },
-            {
-                "COL_STAGEII" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202201",
-                            "end_date": "202238"
-                        },
-                        {
-                            "start_date" : "202248",
-                            "end_date": "202330"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date":"202331",
-                        "end_date":"202345"
+            "COL_STAGEII": {
+                "no_campaign": [
+                    {
+                        "start_date": "202201",
+                        "end_date": "202238"
+                    },
+                    {
+                        "start_date": "202248",
+                        "end_date": "202330"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202331",
+                        "end_date": "202345"
+                    }
+                ]
             }
-        ]
-        
+        }
     },
-    "JAR" : {
+    "JAR": {
         "multiple_campaign": 0,
-        "campaigns_list":[
-            {
-                "JAR_STAGEI" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202243",
-                            "end_date": "202308"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date":"202309",
-                        "end_date":"202335"
+        "campaigns_list": {
+            "JAR_STAGEI": {
+                "no_campaign": [
+                    {
+                        "start_date": "202243",
+                        "end_date": "202308"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202309",
+                        "end_date": "202335"
+                    }
+                ]
             }
-        ]
-
+        }
     },
-    "JAL" : {
-        "multiple_campaign" : 1,
-        "campaigns_list":[
-            {
-                "JAL_STAGEII" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202105",
-                            "end_date": "202304"
-                        }
-                    ]
-                }
-            },
-            {
-                "JAL_STAGEIII" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202105",
-                            "end_date"  : "202304"
-                        }
-                    ],
-                    "campaign" : {
-                        "start_date" : "202305",
-                        "end_date" : "202345"
+    "JAL": {
+        "multiple_campaign": 1,
+        "campaigns_list": {
+            "JAL_STAGEII": {
+                "no_campaign": [
+                    {
+                        "start_date": "202105",
+                        "end_date": "202304"
                     }
-                }
+                ]
             },
-            {
-                "JAL_STAGEIV" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202105",
-                            "end_date"  : "202304"
-                        },
-                        {
-                            "start_date" : "202346",
-                            "end_date"  : "202407"
-                        }
-                    ],
-                    "campaign" : {
-                        "start_date" : "202408",
-                        "end_date" : "202420"
+            "JAL_STAGEIII": {
+                "no_campaign": [
+                    {
+                        "start_date": "202105",
+                        "end_date": "202304"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202305",
+                        "end_date": "202345"
+                    }
+                ]
+            },
+            "JAL_STAGEIV": {
+                "no_campaign": [
+                    {
+                        "start_date": "202105",
+                        "end_date": "202304"
+                    },
+                    {
+                        "start_date": "202346",
+                        "end_date": "202407"
+                    }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202408",
+                        "end_date": "202420"
+                    }
+                ]
             }
-        ]
-
+        }
     },
     "PCT": {
-        "multiple_campaign" : 1,
-        "campaigns_list":[
-            {
-                "PCT_STAGEI" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202220",
-                            "end_date": "202347"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date":"202348",
-                        "end_date":"202411"
+        "multiple_campaign": 1,
+        "campaigns_list": {
+            "PCT_STAGEI": {
+                "no_campaign": [
+                    {
+                        "start_date": "202220",
+                        "end_date": "202347"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202348",
+                        "end_date": "202411"
+                    }
+                ]
             },
-            {
-                "PCT_STAGEII" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202220",
-                            "end_date": "202347"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date":"202412",
-                        "end_date":"202420"
+            "PCT_STAGEII": {
+                "no_campaign": [
+                    {
+                        "start_date": "202220",
+                        "end_date": "202347"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202412",
+                        "end_date": "202420"
+                    }
+                ]
             }
-        ]
+        }
     },
     "SPH": {
-        "multiple_campaign" : 1,
-        "campaigns_list":[
-            {
-                "SPH_STAGEI" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202312",
-                            "end_date": "202316"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date":"202317",
-                        "end_date":"202340"
+        "multiple_campaign": 1,
+        "campaigns_list": {
+            "SPH_STAGEI": {
+                "no_campaign": [
+                    {
+                        "start_date": "202312",
+                        "end_date": "202316"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202317",
+                        "end_date": "202340"
+                    }
+                ]
             },
-            {
-                "SPH_STAGEII" : {
-                    "no_campaign" : [
-                        {
-                            "start_date" : "202312",
-                            "end_date": "202316"
-                        },
-                        {
-                            "start_date" : "202341",
-                            "end_date": "202413"
-                        }
-                    ],
-                    "campaign":{
-                        "start_date":"202414",
-                        "end_date":"202420"
+            "SPH_STAGEII": {
+                "no_campaign": [
+                    {
+                        "start_date": "202312",
+                        "end_date": "202316"
+                    },
+                    {
+                        "start_date": "202341",
+                        "end_date": "202413"
                     }
-                }
+                ],
+                "campaign": [
+                    {
+                        "start_date": "202414",
+                        "end_date": "202428"
+                    }
+                ]
             }
-        ]
+        }
     }
 }
