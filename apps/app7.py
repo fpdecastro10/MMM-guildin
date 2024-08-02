@@ -33,7 +33,7 @@ def update_db_local_with_each_table():
                 time.sleep(0.3)
     except Exception as e:
         st.write(f"Error: agregue el ip {get_public_ip()} a la lista de permitidos en el servidor")
-        print(e)
+        st.write(e)
 
 
 def update_importador_sales_all():
