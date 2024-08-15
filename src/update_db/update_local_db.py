@@ -68,6 +68,18 @@ TABLES_SALES = [
 def update_db_local_guilding(table_name):
     # Configuración de la conexión a la base de datos de destino
 
+    env_variables = {
+        "HOSTS": "No se ha configurado HOSTS de la base de datos como variable de entorno",
+        "USERS": "No se ha configurado NOMBRE de USUARIO de la base de datos como variable de entorno",
+        "PWDS": "No se ha configurado la PASSWORD de la base de datos como variable de entorno",
+        "NAME_DATABASES": "No se ha configurado el NOMBRE de la base de datos como variable de entorno",
+        "PORTS": "No se ha configurado el PUERTO de la base de datos como variable de entorno"
+    }
+
+    for var, error_message in env_variables.items():
+        if os.getenv(var) is None:
+            return error_message
+
     source_config = {
         "host": HOSTS,
         "user": USERS,
