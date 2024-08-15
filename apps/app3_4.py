@@ -2,13 +2,8 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-# import zipfile
 from apps.app3 import main as app3_main
 from apps.app4 import main as app4_main
-
-# zip_file_path = "dataset_to_detect_performance_of_stores.csv.zip"
-# with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-#     zip_ref.extractall(".")
 
 plt.style.use({
     'axes.facecolor': '#0e1118',
