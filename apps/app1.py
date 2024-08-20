@@ -66,8 +66,6 @@ def dataframe_to_markdown(df):
 
 def main():
     with st.sidebar:
-        imagen_local = './assets/img/logo2x.png'
-        st.image(imagen_local, use_column_width=True)
         st.markdown(
             '<h1 style="font-size: 34px;">Filtros </h1>',
             unsafe_allow_html=True

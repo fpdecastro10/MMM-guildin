@@ -1,7 +1,9 @@
 import streamlit as st
 import os
 import zipfile
+from dotenv import load_dotenv
 
+load_dotenv(".env")
 
 file_path = "datasets/dataset_to_detect_performance_of_stores.csv"
 if not os.path.isfile(file_path):
@@ -12,7 +14,9 @@ if not os.path.isfile(file_path):
 
 
 def main():
-    st.title("Seleccione el tipo de predicción que desea realizar:")
+    st.title("Seleccione una aplicacion:")
+    imagen_local = './assets/img/logo2x.png'
+    st.sidebar.image(imagen_local, use_column_width=True)
     app_selection = st.selectbox(
         "",
         [
@@ -20,9 +24,7 @@ def main():
             "2. Predicción de sales + analytics seasonality, trend & media",
             "3. Tendencia de Ventas en Stores",
             "4. Predicción de sales - Regresión polinomial",
-            "5. Actualización de la Base de datos",
-            "6. Configuración periodos de campaña de SGs",
-            "7. Entrenamiento de modelos"
+            "5. Actualización de la Base de datos, periódos de campaña y entrenamientos de modelos"
         ]
     )
 
@@ -40,15 +42,9 @@ def main():
     elif app_selection == "2. Predicción de sales + analytics seasonality, trend & media":
         from apps.app6 import main as app6_main
         app6_main()
-    elif app_selection == "5. Actualización de la Base de datos":
-        from apps.app7 import main as app7_main
-        app7_main()
-    elif app_selection == "6. Configuración periodos de campaña de SGs":
-        from apps.app8 import main as app8_main
-        app8_main()
-    elif app_selection == "7. Entrenamiento de modelos":
-        from apps.app9 import main as app9_main
-        app9_main()
+    elif app_selection == "5. Actualización de la Base de datos, periódos de campaña y entrenamientos de modelos":
+        from apps.app789 import main as app789_main
+        app789_main()
 
 
 if __name__ == "__main__":

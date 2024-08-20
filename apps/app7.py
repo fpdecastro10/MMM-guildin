@@ -36,19 +36,22 @@ def update_db_local_with_each_table():
 
 
 def update_importador_sales_all():
-    delete_table_importador_sales_all()
+    try:
+        delete_table_importador_sales_all()
 
-    placeholder = st.container().empty()
-    index_progress = 0
-    progress_bar = st.progress(index_progress)
+        placeholder = st.container().empty()
+        index_progress = 0
+        progress_bar = st.progress(index_progress)
 
-    with placeholder:
-        for table in TABLES_SALES:
-            result = update_sales_all(table)
-            st.write(result)
-            index_progress += 1
-            progress_bar.progress(index_progress / len(TABLES_SALES))
-            time.sleep(0.3)
+        with placeholder:
+            for table in TABLES_SALES:
+                result = update_sales_all(table)
+                st.write(result)
+                index_progress += 1
+                progress_bar.progress(index_progress / len(TABLES_SALES))
+                time.sleep(0.3)
+    except Exception as e:
+        st.write(f"Error: No se pudo actualizar la tabla importador_sales_All, debe actualizar la base de datos primero")
 
 
 def update_datasets():
@@ -70,20 +73,29 @@ def update_datasets():
 
 def main():
     # Lógica de la primera aplicación
-    imagen_local = './assets/img/logo2x.png'
-    st.sidebar.image(imagen_local, use_column_width=True)
     st.markdown(
-        '<h1 style="font-size: 34px;">Actualizacion Base de datos </h1>',
+        '''
+        <h1 style="font-size: 34px;">Actualización base de datos y datasets para reflejar nuevos cambios</h1>
+        ''',
         unsafe_allow_html=True
     )
 
-    if st.sidebar.button("Actualizar Base de Datos local"):
+    if st.button(
+        "Actualizar Base de Datos local",
+        help="Añade los registros nuevos en la base de datos para reflejar cambios recientes o corregir errores."
+    ):
         update_db_local_with_each_table()
 
-    if st.sidebar.button("Actualizar tabla de ventas"):
+    if st.button(
+        "Actualizar tabla de ventas",
+        help="Impacta los nuevos registros nuevos de tabla de ventas offline agregado por clientes."
+    ):
         update_importador_sales_all()
 
-    if st.sidebar.button("Actualizar datasets"):
+    if st.button(
+        "Actualizar datasets",
+        help="Añade los registros nuevos del Dataset configurado para entrenar el modelo."
+    ):
         update_datasets()
 
 

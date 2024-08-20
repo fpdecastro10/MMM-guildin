@@ -13,10 +13,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el contenido de la aplicación en el contenedor
 COPY . .
 
-RUN export $(grep -v '^#' .env | xargs)
+RUN cat .env.guilding | base64 --decode > .env
 
 # Exponer el puerto que usa Streamlit
 EXPOSE 8501
 
 # Comando para ejecutar la aplicación
-CMD ["streamlit", "run", "main.py"]
+CMD ["streamlit", "run", "main.py", "--server.port=8501", "--server.enableCORS=false"]

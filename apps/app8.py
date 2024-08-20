@@ -82,8 +82,6 @@ class UpdateInfoModel:
 
 def main():
     # Lógica de la primera aplicación
-    imagen_local = './assets/img/logo2x.png'
-    st.sidebar.image(imagen_local, use_column_width=True)
     st.markdown(
         '<h1 style="font-size: 34px;">Actualizacion de la información del modelo</h1>',
         unsafe_allow_html=True

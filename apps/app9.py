@@ -159,9 +159,6 @@ def train_model(campaign_key, sg_key):
 def main():
 
     # Lógica de la primera aplicación
-    imagen_local = './assets/img/logo2x.png'
-    st.sidebar.image(imagen_local, use_column_width=True)
-
     st.markdown(
         '<h1 style="font-size: 34px;">Entrenamiento de modelos</h1>',
         unsafe_allow_html=True
