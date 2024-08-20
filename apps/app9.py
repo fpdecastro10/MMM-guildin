@@ -165,7 +165,7 @@ def main():
     )
 
     list_campaign = table_pivoted['campaign'].unique().tolist()
-    selected_campaign = st.sidebar.selectbox(
+    selected_campaign = st.selectbox(
         "Seleccione la campaña donde pertenece el SG",
         list_campaign
     )
@@ -177,10 +177,10 @@ def main():
         'concat_store_group_name'
     ].unique().tolist()
 
-    selected_sg = st.sidebar.selectbox(
+    selected_sg = st.selectbox(
         "Seleccione el SG para el cual quiere entrenar el modelo",
         list_store_group
     )
 
-    if st.sidebar.button("Entrenar modelo"):
+    if st.button("Entrenar modelo"):
         train_model(selected_campaign, selected_sg)

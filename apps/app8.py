@@ -7,6 +7,10 @@ dict_convertion_prefix = {
     "No campaign": "no_campaign",
     "Campaign": "campaign"
 }
+dict_convertion_mssg = {
+    "No campaign": "Intervalos de fechas donde no hubo campañas corriendo en ese SG",
+    "Campaign": "Intervalo de fechas donde si hubo campañas corriendo"
+}
 
 
 class UpdateInfoModel:
@@ -26,6 +30,7 @@ class UpdateInfoModel:
     def edit_model_json(self, prefix, campaign_key, numbers_of_row, type):
 
         st.write(type)
+        st.write(dict_convertion_mssg[type])
         rows_number, cols_number = numbers_of_row, 2
 
         data_uploaded = []

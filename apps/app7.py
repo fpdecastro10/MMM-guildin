@@ -51,25 +51,27 @@ def update_importador_sales_all():
                 progress_bar.progress(index_progress / len(TABLES_SALES))
                 time.sleep(0.3)
     except Exception as e:
-        st.write(f"Error: No se pudo actualizar la tabla importador_sales_All, debe actualizar la base de datos primero")
+        st.write(f"Error: No se pudo actualizar la tabla de ventas, debe actualizar la base de datos primero")
 
 
 def update_datasets():
-    create_sub_tables()
-    placeholder = st.container().empty()
-    index_progress = 0
-    progress_bar = st.progress(index_progress)
+    try:
+        create_sub_tables()
+        placeholder = st.container().empty()
+        index_progress = 0
+        progress_bar = st.progress(index_progress)
 
-    with placeholder:
-        for table in DATASET_DATE:
-            name = table["name"]
-            st.write(f"Actualizando dataset {name}")
-            result = write_query_to_dataset(table)
-            st.write(f"Actualizando dataset {result}")
-            index_progress += 1
-            progress_bar.progress(index_progress / len(DATASET_DATE))
-            time.sleep(0.3)
-
+        with placeholder:
+            for table in DATASET_DATE:
+                name = table["name"]
+                st.write(f"Actualizando dataset {name}")
+                result = write_query_to_dataset(table)
+                st.write(f"Actualizando dataset {result}")
+                index_progress += 1
+                progress_bar.progress(index_progress / len(DATASET_DATE))
+                time.sleep(0.3)
+    except Exception as e:
+        st.write(f"Error: No se pudo actualizar la tabla de ventas, debe actualizar la base de datos primero")
 
 def main():
     # Lógica de la primera aplicación
