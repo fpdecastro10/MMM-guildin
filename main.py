@@ -9,7 +9,7 @@ file_path = "datasets/dataset_to_detect_performance_of_stores.csv"
 if not os.path.isfile(file_path):
     file_path_zip = "datasets/dataset_to_detect_performance_of_stores.csv" + ".zip"
     if os.path.isfile(file_path_zip):
-        with zipfile.ZipFile(file_path, 'r') as zip_ref:
+        with zipfile.ZipFile(file_path_zip, 'r') as zip_ref:
             zip_ref.extractall("datasets/")
 
 
