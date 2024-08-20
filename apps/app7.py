@@ -7,14 +7,10 @@ from src.update_db.update_local_db import TABLES, TABLES_SALES
 from src.update_db.dict_queries import DATASET_DATE
 import time
 import requests
-import os
 
 def get_public_ip():
     try:
-        response = requests.get('https://api.ipify.org?format=json')
-        response.raise_for_status()  # Verifica que la solicitud fue exitosa
-        ip_info = response.json()
-        return ip_info['ip']
+        return requests.get('https://api.ipify.org?format=json').json()['ip']
     except requests.RequestException as e:
         print(f"Error obteniendo la IP pública: {e}")
         return None
