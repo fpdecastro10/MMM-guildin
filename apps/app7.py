@@ -7,6 +7,7 @@ from src.update_db.update_local_db import TABLES, TABLES_SALES
 from src.update_db.dict_queries import DATASET_DATE
 import time
 import requests
+import os
 
 def get_public_ip():
     try:
@@ -75,6 +76,13 @@ def update_datasets():
 
 def main():
     # Lógica de la primera aplicación
+    st.write("----------")
+    st.write(os.getenv("HOSTS"))
+    st.write(os.getenv("USERS"))
+    st.write(os.getenv("PWDS"))
+    st.write(os.getenv("NAME_DATABASES"))
+    st.write(os.getenv("PORTS"))
+    st.write("----------")
     st.markdown(
         '''
         <h1 style="font-size: 34px;">Actualización base de datos y datasets para reflejar nuevos cambios</h1>
