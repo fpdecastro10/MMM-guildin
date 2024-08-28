@@ -63,7 +63,7 @@ class UpdateInfoModel:
         self.data_input[dict_convertion_prefix[type]] = cols_inputs
 
     def button_to_refresh_model_info(self, prefix, campaign_key):
-        if st.button("Actualizar"):
+        if st.button("Guardar"):
             no_campaign_model_info = []
             for nocampaigs in self.data_input["no_campaign"]:
                 if nocampaigs[0] != "" and nocampaigs[1] != "":
@@ -82,7 +82,93 @@ class UpdateInfoModel:
                     })
             self.json[prefix]["campaigns_list"][campaign_key]["campaign"] = campaign_model_info
 
+    def button_to_save_model_info(self, prefix, campaign_key):
+        if st.button("Guardar"):
+            no_campaign_model_info = []
+            for nocampaigs in self.data_input["no_campaign"]:
+                if nocampaigs[0] != "" and nocampaigs[1] != "":
+                    no_campaign_model_info.append({
+                        "start_date": nocampaigs[0],
+                        "end_date": nocampaigs[1]
+                    })
+            self.json[prefix]["campaigns_list"][campaign_key] = {}
+            self.json[prefix]["campaigns_list"][campaign_key]["no_campaign"] = no_campaign_model_info
+
+            campaign_model_info = []
+            for campaign in self.data_input["campaign"]:
+                if campaign[0] != "" and campaign[1] != "":
+                    campaign_model_info.append({
+                        "start_date": campaign[0],
+                        "end_date": campaign[1]
+                    })
+            self.json[prefix]["campaigns_list"][campaign_key]["campaign"] = campaign_model_info
+
             self.write_json(self.json)
+    
+    def create_model_json(self, prefix, campaign_key, numbers_of_row, type):
+        st.write(type)
+        st.write(dict_convertion_mssg[type])
+        rows_number, cols_number = numbers_of_row, 2
+
+        cols_inputs = []
+        for i in range(rows_number):
+            cols = st.columns(cols_number)
+            start_end_date = []
+            for j in range(cols_number):
+                key = f"{dict_convertion_prefix[type]}-{i}-{j}"
+                if j == 0:
+                    if i == 0:
+                        user_input = cols[j].text_input("Start date", key=key)
+                    else:
+                        user_input = cols[j].text_input("", key=key)
+                elif j == 1:
+                    if i == 0:
+                        user_input = cols[j].text_input("End date", key=key)
+                    else:
+                        user_input = cols[j].text_input("", key=key)
+                else:
+                    user_input = cols[j].text_input("", key=key)
+                start_end_date.append(user_input)
+            cols_inputs.append(start_end_date)
+        self.data_input[dict_convertion_prefix[type]] = cols_inputs
+
+
+def create_campaign():
+    input_prefix = st.text_input("Ingrese el prefijo de la campaña")
+    input_prefix_without_space = input_prefix.replace(" ", "")
+
+    if input_prefix != "":
+        input_campaign_key = st.text_input("Ingrese el nombre de la campaña")
+
+        if not input_campaign_key.startswith(input_prefix_without_space) and input_campaign_key != "":
+            st.error("El nombre de la campaña debe empezar con el prefijo de la campaña")
+        else:
+            input_no_campaigns = st.number_input(
+                "Ingrese la cantidad de no campaigns",
+                min_value=1,
+                value=3
+            )
+
+            input_campaigns = st.number_input(
+                "Ingrese la cantidad de campaigns",
+                min_value=1,
+                value=3
+            )
+
+            update_info_model = UpdateInfoModel()
+            update_info_model.create_model_json(
+                input_prefix_without_space,
+                input_campaign_key,
+                input_no_campaigns,
+                "No campaign"
+            )
+            update_info_model.create_model_json(
+                input_prefix_without_space,
+                input_campaign_key,
+                input_campaigns,
+                "Campaign"
+            )
+            update_info_model.button_to_save_model_info(input_prefix_without_space, input_campaign_key)
 
 
 def main():
@@ -92,42 +178,57 @@ def main():
         unsafe_allow_html=True
     )
 
-    update_info_model = UpdateInfoModel()
-
-    json = update_info_model.read_json()
-    keys_list_prefix = list(json.keys())
-    prefix = st.sidebar.selectbox(
-        "Seleccione el prefijo de la campaña que desea editar",
-        keys_list_prefix
+    action_to_do = st.sidebar.selectbox(
+        "Seleccione la acción que desea realizar",
+        [
+            "Cargar nueva campaña",
+            "Modificar campaña"
+        ]
     )
 
-    list_with_key_campaign = list(json[prefix]["campaigns_list"].keys())
-    campaign_key = st.sidebar.selectbox(
-        "Seleccione la campaña que desea editar",
-        list_with_key_campaign
-    )
+    if action_to_do == "Cargar nueva campaña":
+        create_campaign()
+    else:
+        update_info_model = UpdateInfoModel()
 
-    input_no_campaigns = st.sidebar.number_input(
-        "Ingrese la cantidad de no campaigns",
-        min_value=1,
-        value=3
-    )
+        json = update_info_model.read_json()
+        keys_list_prefix = list(json.keys())
+        prefix = st.sidebar.selectbox(
+            "Seleccione el prefijo de la campaña que desea editar",
+            keys_list_prefix
+        )
 
-    input_campaign = 1
+        list_with_key_campaign = list(json[prefix]["campaigns_list"].keys())
+        campaign_key = st.sidebar.selectbox(
+            "Seleccione la campaña que desea editar",
+            list_with_key_campaign
+        )
 
-    update_info_model.edit_model_json(
-        prefix,
-        campaign_key,
-        input_no_campaigns,
-        "No campaign"
-    )
-    update_info_model.edit_model_json(
-        prefix,
-        campaign_key,
-        input_campaign,
-        "Campaign"
-    )
-    update_info_model.button_to_refresh_model_info(prefix, campaign_key)
+        input_no_campaigns = st.sidebar.number_input(
+            "Ingrese la cantidad de no campaigns",
+            min_value=1,
+            value=3
+        )
+
+        input_campaigns = st.sidebar.number_input(
+            "Ingrese la cantidad de campaigns",
+            min_value=1,
+            value=3
+        )
+
+        update_info_model.edit_model_json(
+            prefix,
+            campaign_key,
+            input_no_campaigns,
+            "No campaign"
+        )
+        update_info_model.edit_model_json(
+            prefix,
+            campaign_key,
+            input_campaigns,
+            "Campaign"
+        )
+        update_info_model.button_to_refresh_model_info(prefix, campaign_key)
 
 
 if __name__ == "__main__":
