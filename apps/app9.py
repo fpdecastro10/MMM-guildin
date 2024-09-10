@@ -7,6 +7,7 @@ import os
 import pickle
 from prophet import Prophet
 from sklearn.model_selection import TimeSeriesSplit
+import plotly.graph_objects as go
 
 
 data_whole_sg_wp = pd.read_csv('datasets/datasetCampignSalesNew.csv')
@@ -81,6 +82,8 @@ def train_model(campaign_key, sg_key):
                     ignore_index=True
                 )
 
+        store_group_result.to_csv(f"models/model_datasets/{sg_key}.csv", index=False)
+
         table_prophet_sg = store_group_result.rename(
             columns={'sales': 'y', 'ISOweek': 'ds'}
         )[['ds', 'y', 'concat_store_group_name']]
@@ -151,9 +154,31 @@ def train_model(campaign_key, sg_key):
             "adstock_alphas": experiment.best_trial.user_attrs["adstock_alphas"],
             "params": experiment.best_trial.user_attrs["params"]
         }
-        st.write("✅ El modelo ha terminado de entrenarse.")
+        st.write(f"✅ El modelo del storegroup {sg_key} ha terminado de entrenarse.")
     except Exception as error:
         st.write(error)
+
+def store_group_df(sg_key):
+    path_to_csv = f"models/model_datasets/{sg_key}.csv"
+    df = pd.read_csv(path_to_csv)
+    df["Facebook Weekly"] = df["Facebook Weekly"].fillna(0)
+    df["Google Weekly"] = df["Google Weekly"].fillna(0)
+    df['date'] = pd.to_datetime(df['ISOweek'])
+    df = df.sort_values(by='date')
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=df['date'], y=df['Facebook Weekly'], mode='lines', name='Facebook Weekly'))
+    fig.add_trace(go.Scatter(x=df['date'], y=df['Google Weekly'], mode='lines', name='Google Weekly'))
+    fig.add_trace(go.Scatter(x=df['date'], y=df['sales'], mode='lines', name='Sales', yaxis='y2'))
+
+    fig.update_layout(
+        title="Gráfico con dos ejes Y",
+        xaxis=dict(title="Date"),
+        yaxis=dict(title="Valores de A y B"),
+        yaxis2=dict(title="Sales", overlaying='y', side='right'),
+    )
+
+    st.plotly_chart(fig)
 
 
 def main():
@@ -165,6 +190,7 @@ def main():
     )
 
     list_campaign = table_pivoted['campaign'].unique().tolist()
+    print(list_campaign)
     selected_campaign = st.selectbox(
         "Seleccione la campaña donde pertenece el SG",
         list_campaign
@@ -177,10 +203,13 @@ def main():
         'concat_store_group_name'
     ].unique().tolist()
 
+    if st.button("Entrenar modelos"):
+        for sg in list_store_group:
+            train_model(selected_campaign, sg)
+
     selected_sg = st.selectbox(
-        "Seleccione el SG para el cual quiere entrenar el modelo",
+        "Seleccione el SG para el cual quiere ver el gráfico",
         list_store_group
     )
 
-    if st.button("Entrenar modelo"):
-        train_model(selected_campaign, selected_sg)
+    store_group_df(selected_sg)

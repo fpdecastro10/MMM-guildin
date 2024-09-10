@@ -673,7 +673,7 @@ def list_investment_store_group(waiting_increase, list_sg=list_store_group):
 
     dict_inversion = {}
 
-    file_json = 'parameter_sg.json'
+    file_json = 'models/parameter_sg.json'
     with open(file_json, "r") as archivo:
         params_adstock = json.load(archivo)
 
