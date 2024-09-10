@@ -682,10 +682,10 @@ def list_investment_store_group(waiting_increase, list_sg=list_store_group):
         # store_group = list_sg[54]
             store_group = list_sg[store_group_index]
 
-            if not os.path.exists(f"models/{store_group}.pkl") or store_group not in params_adstock:
+            if not os.path.exists(f"models/trained_models/{store_group}.pkl") or store_group not in params_adstock:
                 continue
 
-            with open(f"models/{store_group}.pkl", 'rb') as f:
+            with open(f"models/trained_models/{store_group}.pkl", 'rb') as f:
                 prophet = pickle.load(f)
 
             # Filtramos la tabla por store_group
@@ -755,12 +755,12 @@ def list_investment_store_group(waiting_increase, list_sg=list_store_group):
                                     result['x_input_interval_nontransformed'],
                                     final_data_store_group_wi,
                                     features)
-            
+
             dict_inversion[store_group] = investment[1]
         except Exception as e:
             dict_inversion[store_group] = Exception
             continue
-            
+
     return dict_inversion
 
 
