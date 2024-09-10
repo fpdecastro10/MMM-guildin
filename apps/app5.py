@@ -491,7 +491,7 @@ def main():
             selection_storeGroups_in = all_sg_with_shap_in
 
         if st.button("Predecir crecimiento"):
-            if number_input_increases == 0:
+            if number_input_increases <= 0:
                 st.write("Debe ingresar un valor mayor a 0")
             elif selection_storeGroups_in == []:
                 st.write("Debe seleccionar al menos un store group")
