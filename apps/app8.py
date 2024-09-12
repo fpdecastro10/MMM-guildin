@@ -37,6 +37,7 @@ class UpdateInfoModel:
         if dict_convertion_prefix[type] in self.json[prefix]["campaigns_list"][campaign_key]:
             for period in self.json[prefix]["campaigns_list"][campaign_key][dict_convertion_prefix[type]]:
                 data_uploaded.append([period["start_date"], period["end_date"]])
+        data_uploaded = data_uploaded[:rows_number]
 
         cols_inputs = []
         for i, item2 in itertools.zip_longest(range(rows_number), data_uploaded, fillvalue=None):
@@ -82,6 +83,9 @@ class UpdateInfoModel:
                     })
             self.json[prefix]["campaigns_list"][campaign_key]["campaign"] = campaign_model_info
 
+            self.write_json(self.json)
+            st.write(f"Modelo guardado con éxito")
+
     def button_to_save_model_info(self, prefix, campaign_key):
         if st.button("Guardar"):
             no_campaign_model_info = []
@@ -104,6 +108,7 @@ class UpdateInfoModel:
             self.json[prefix]["campaigns_list"][campaign_key]["campaign"] = campaign_model_info
 
             self.write_json(self.json)
+            st.write(f"Modelo guardado con éxito")
     
     def create_model_json(self, prefix, campaign_key, numbers_of_row, type):
         st.write(type)
