@@ -13,8 +13,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el contenido de la aplicación en el contenedor
 COPY . .
 
-RUN cat .env.guilding | base64 --decode > .env
-
 # Exponer el puerto que usa Streamlit
 EXPOSE 8501
 

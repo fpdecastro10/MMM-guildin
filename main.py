@@ -2,6 +2,10 @@ import streamlit as st
 import os
 import zipfile
 from dotenv import load_dotenv
+import subprocess
+
+command = "cat .env.guilding | base64 --decode > .env"
+subprocess.run(command, shell=True, capture_output=True, text=True)
 
 load_dotenv(".env")
 
