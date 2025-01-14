@@ -6,3 +6,11 @@
 # Byte-compiled / optimized / DLL files
 *.py[cod]
 *$py.class
+
+/datasets/
+
+models/model_datasets/
+
+.DS_Store
+
+*.db

@@ -190,7 +190,6 @@ def main():
     )
 
     list_campaign = table_pivoted['campaign'].unique().tolist()
-    print(list_campaign)
     selected_campaign = st.selectbox(
         "Seleccione la campaña donde pertenece el SG",
         list_campaign

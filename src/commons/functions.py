@@ -9,7 +9,7 @@ from plotnine import *
 from functools import partial
 import optuna as opt
 import plotly.io as pio
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import root_mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils import check_array
@@ -281,7 +281,8 @@ def optuna_trial(
         rf.fit(x_train, y_train)
         prediction = rf.predict(x_test)
 
-        rmse = mean_squared_error(y_true=y_test, y_pred=prediction, squared=False)
+        rmse = root_mean_squared_error(y_true=y_test, y_pred=prediction)
+
         scores.append(rmse)
 
         if is_multiobjective:

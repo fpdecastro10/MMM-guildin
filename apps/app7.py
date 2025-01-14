@@ -12,7 +12,6 @@ def get_public_ip():
     try:
         return requests.get('https://api.ipify.org?format=json').json()['ip']
     except requests.RequestException as e:
-        print(f"Error obteniendo la IP pública: {e}")
         return None
 
 

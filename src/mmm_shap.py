@@ -265,7 +265,6 @@ def model_refit(data,
     #apply adstock transformation
     for feature in media_channels:
         adstock_alpha = adstock_alphas[feature]
-        # print(f"applying geometric adstock transformation on {feature} with alpha {adstock_alpha}") 
 
         #adstock transformation
         x_feature = data_refit[feature].values.reshape(-1, 1)
@@ -286,7 +285,6 @@ def model_refit(data,
     x_input_interval_transformed = x_input.iloc[start_index:end_index]
 
     #revenue prediction for the analysis interval
-    # print(f"predicting {len(x_input_interval_transformed)}")
     prediction = random_forest.predict(x_input_interval_transformed)
 
     #transformed data set for the analysis interval 
@@ -430,11 +428,7 @@ def optuna_optimize(trials,
                     tscv, 
                     is_multiobjective, 
                     seed = 42):
-    # print(f"data size: {len(data)}")
-    # print(f"media features: {media_features}")
-    # print(f"adstock features: {adstock_features}")
-    # print(f"features: {features}")
-    # print(f"is_multiobjective: {is_multiobjective}")
+
     opt.logging.set_verbosity(opt.logging.WARNING) 
     
     if is_multiobjective == False:

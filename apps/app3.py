@@ -49,7 +49,6 @@ def main():
             "Seleccione el nombre de la campaña:",
             unique_combinations_campaign
         )
-        print(unique_combinations_campaign)
         unique_combinationsStore = unique_combinations.query(f"campaign_storeGroup in @opciones_seleccionadas")
 
         index_storeGroup = {}
