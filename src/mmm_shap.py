@@ -384,7 +384,7 @@ def optuna_trial(trial,
         rf.fit(x_train, y_train)
         prediction = rf.predict(x_test)
         
-        rmse = mean_squared_error(y_true = y_test, y_pred = prediction, squared = False)
+        rmse = mean_squared_error(y_true = y_test, y_pred = prediction)
         scores.append(rmse)
         
         if is_multiobjective:
