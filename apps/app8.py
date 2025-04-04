@@ -95,6 +95,9 @@ class UpdateInfoModel:
                         "start_date": nocampaigs[0],
                         "end_date": nocampaigs[1]
                     })
+            if prefix not in self.json:
+                self.json[prefix] = {}
+                self.json[prefix]["campaigns_list"] = {}
             self.json[prefix]["campaigns_list"][campaign_key] = {}
             self.json[prefix]["campaigns_list"][campaign_key]["no_campaign"] = no_campaign_model_info
 

@@ -148,6 +148,7 @@ def second_approach(input_number,list_seleceted_campaign,bool_execute):
         df_filter_storeGroups = df_filter_by_time.query("campaign in @list_seleceted_campaign")
 
         list_tabla_medio = df_filter_storeGroups["tabla_medio"].unique().tolist()
+
         dict_tablaMedio_sum_avg = {}
         for medio in list_tabla_medio:
             list_tabla_medio_cost_convertion = df_filter_storeGroups[["tabla_medio","cost_convertion"]].query(f"tabla_medio in {[medio]}")["cost_convertion"]
@@ -165,7 +166,6 @@ def second_approach(input_number,list_seleceted_campaign,bool_execute):
         df_sales_filter_by_date_list_StoreGroup["Store Group"] = df_sales_filter_by_date_list_StoreGroup["store_group_id"].astype(str) + " - " + df_sales_filter_by_date_list_StoreGroup["name"]
         storeGroupList = df_sales_filter_by_date_list_StoreGroup["Store Group"].unique().tolist()
         storeGroupSelected = st.multiselect("Seleccione los stores groups que desea quitar de la estimación de distribución",storeGroupList)
-        df_sales_filter_by_date_list_StoreGroup = df_sales_filter_by_date_list_StoreGroup.query("`Store Group` not in @storeGroupSelected")
 
         new_list_with_sg = [elemento for elemento in storeGroupList if elemento not in storeGroupSelected]
 

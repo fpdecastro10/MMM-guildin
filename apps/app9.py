@@ -160,25 +160,28 @@ def train_model(campaign_key, sg_key):
 
 def store_group_df(sg_key):
     path_to_csv = f"models/model_datasets/{sg_key}.csv"
-    df = pd.read_csv(path_to_csv)
-    df["Facebook Weekly"] = df["Facebook Weekly"].fillna(0)
-    df["Google Weekly"] = df["Google Weekly"].fillna(0)
-    df['date'] = pd.to_datetime(df['ISOweek'])
-    df = df.sort_values(by='date')
+    if not os.path.exists(path_to_csv):
+        st.write("Este modelo no ha sido entrenado")
+    else:
+        df = pd.read_csv(path_to_csv)
+        df["Facebook Weekly"] = df["Facebook Weekly"].fillna(0)
+        df["Google Weekly"] = df["Google Weekly"].fillna(0)
+        df['date'] = pd.to_datetime(df['ISOweek'])
+        df = df.sort_values(by='date')
 
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=df['date'], y=df['Facebook Weekly'], mode='lines', name='Facebook Weekly'))
-    fig.add_trace(go.Scatter(x=df['date'], y=df['Google Weekly'], mode='lines', name='Google Weekly'))
-    fig.add_trace(go.Scatter(x=df['date'], y=df['sales'], mode='lines', name='Sales', yaxis='y2'))
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=df['date'], y=df['Facebook Weekly'], mode='lines', name='Facebook Weekly'))
+        fig.add_trace(go.Scatter(x=df['date'], y=df['Google Weekly'], mode='lines', name='Google Weekly'))
+        fig.add_trace(go.Scatter(x=df['date'], y=df['sales'], mode='lines', name='Sales', yaxis='y2'))
 
-    fig.update_layout(
-        title="Gráfico con dos ejes Y",
-        xaxis=dict(title="Date"),
-        yaxis=dict(title="Valores de A y B"),
-        yaxis2=dict(title="Sales", overlaying='y', side='right'),
-    )
+        fig.update_layout(
+            title="Gráfico con dos ejes Y",
+            xaxis=dict(title="Date"),
+            yaxis=dict(title="Valores de A y B"),
+            yaxis2=dict(title="Sales", overlaying='y', side='right'),
+        )
 
-    st.plotly_chart(fig)
+        st.plotly_chart(fig)
 
 
 def main():
