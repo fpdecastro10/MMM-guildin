@@ -8,6 +8,9 @@ command = "cat .env.guilding | base64 --decode > .env"
 subprocess.run(command, shell=True, capture_output=True, text=True)
 
 load_dotenv(".env")
+# Load RDS credentials from a separate file not tracked by git.
+# This file must be created manually on each machine (see .env.rds.example).
+load_dotenv(".env.rds", override=True)
 
 file_path = "datasets/dataset_to_detect_performance_of_stores.csv"
 if not os.path.isfile(file_path):

@@ -9,4 +9,3 @@ To run the application the step that you have to follow are:
 
 * Dowload the project:
     https://github.com/fpdecastro10/MMM-guildin
-

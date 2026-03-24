@@ -8,7 +8,8 @@ def main():
         [
             "1. Actualización de la Base de datos",
             "2. Configuración periodos de campaña de SGs",
-            "3. Entrenamiento de modelos"
+            "3. Entrenamiento de modelos",
+            "4. Actualizar Tableau DB"
         ]
     )
 
@@ -21,3 +22,6 @@ def main():
     elif app_selection_1 == "3. Entrenamiento de modelos":
         from apps.app9 import main as app9_main
         app9_main()
+    elif app_selection_1 == "4. Actualizar Tableau DB":
+        from apps.app10 import main as app10_main
+        app10_main()
