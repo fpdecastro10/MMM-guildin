@@ -1,5 +1,5 @@
 .env
-.env.rds
+venv/
 
 # Ignorar todos los directorios __pycache__
 **/__pycache__/
@@ -14,6 +14,7 @@ models/
 datasets/
 
 .DS_Store
+spec/
 
 *.db
 
