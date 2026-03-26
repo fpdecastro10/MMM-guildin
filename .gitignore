@@ -10,10 +10,14 @@
 
 /datasets/
 
-models/model_datasets/
+models/
+datasets/
 
 .DS_Store
 
 *.db
 
 /venv/
+
+spec/
+
