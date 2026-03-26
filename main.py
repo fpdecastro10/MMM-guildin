@@ -8,6 +8,9 @@ command = "cat .env.guilding | base64 --decode > .env"
 subprocess.run(command, shell=True, capture_output=True, text=True)
 
 load_dotenv(".env")
+# Load RDS credentials from a separate file not tracked by git.
+# This file must be created manually on each machine (see .env.rds.example).
+load_dotenv(".env.rds", override=True)
 
 from auth.auth import render_login  # noqa: E402 — debe importarse después de load_dotenv
 
