@@ -79,7 +79,22 @@ def get_rds_engine():
     )
 
 
-def copy_table_to_rds(table_name):
+def _map_error(table_name: str, e: Exception) -> str:
+    msg = str(e).lower()
+    if "packet sequence number" in msg or "lost connection" in msg or "connection" in msg:
+        return (
+            f"{table_name}: No se pudo conectar a la base de datos fuente. "
+            "La conexión fue interrumpida — esto suele pasar cuando el servidor está ocupado "
+            "o la red es inestable. Intentá de nuevo en unos minutos."
+        )
+    if "access denied" in msg:
+        return f"{table_name}: Acceso denegado. Verificá las credenciales de la base de datos."
+    if "timeout" in msg:
+        return f"{table_name}: Tiempo de conexión agotado. El servidor tardó demasiado en responder."
+    return f"{table_name}: Ocurrió un error inesperado. Detalle técnico: {e}"
+
+
+def copy_table_to_rds(table_name) -> str:
     """Step 1 — copies a single table from source MySQL to RDS MySQL."""
     try:
         source_engine = get_source_engine()
@@ -101,7 +116,7 @@ def copy_table_to_rds(table_name):
         df.to_sql(name=table_name, con=rds_engine, if_exists='replace', index=False)
         return f"Tabla {table_name} copiada con éxito."
     except Exception as e:
-        return f"Error en {table_name}: {e}"
+        return _map_error(table_name, e)
 
 
 def drop_importador_sales_all_rds():
@@ -139,7 +154,7 @@ def copy_sales_table_to_sales_all(table_name):
         df.to_sql(name='importador_sales_all', con=rds_engine, if_exists='append', index=False)
         return f"Datos de {table_name} añadidos a importador_sales_all."
     except Exception as e:
-        return f"Error en {table_name}: {e}"
+        return _map_error(table_name, e)
 
 
 def create_isa_table_rds():
@@ -162,4 +177,4 @@ def create_isa_table_rds():
             conn.commit()
         return "Tabla isa_table creada con éxito. El dashboard de Tableau ya refleja los datos actualizados."
     except Exception as e:
-        return f"Error creando isa_table: {e}"
+        return _map_error("isa_table", e)
