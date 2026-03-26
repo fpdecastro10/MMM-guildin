@@ -10,11 +10,15 @@ venv/
 
 /datasets/
 
-models/model_datasets/
-models/trained_models/
-models
+models/
+datasets/
 
 .DS_Store
 spec/
 
 *.db
+
+/venv/
+
+spec/
+
