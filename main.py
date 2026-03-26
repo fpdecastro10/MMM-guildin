@@ -9,6 +9,8 @@ subprocess.run(command, shell=True, capture_output=True, text=True)
 
 load_dotenv(".env")
 
+from auth.auth import render_login  # noqa: E402 — debe importarse después de load_dotenv
+
 file_path = "datasets/dataset_to_detect_performance_of_stores.csv"
 if not os.path.isfile(file_path):
     file_path_zip = "datasets/dataset_to_detect_performance_of_stores.csv" + ".zip"
@@ -33,14 +35,12 @@ def main():
     )
 
     if app_selection == "4. Predicción de sales - Regresión polinomial":
-        # Ejecutar la primera aplicación
         from apps.app1 import main as app1_main
         app1_main()
     elif app_selection == "3. Tendencia de Ventas en Stores":
         from apps.app3_4 import main as app3_4_main
         app3_4_main()
     elif app_selection == "1. Inversión inicial y distribución de budget":
-        # from app5_copy import main as app5_main
         from apps.app5 import main as app5_main
         app5_main()
     elif app_selection == "2. Predicción de sales + analytics seasonality, trend & media":
@@ -52,4 +52,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    _, authentication_status, _ = render_login()
+
+    if authentication_status:
+        main()
+    elif authentication_status is False:
+        st.error("Usuario o contraseña incorrectos.")
+    else:
+        st.info("Por favor ingresá tus credenciales para continuar.")

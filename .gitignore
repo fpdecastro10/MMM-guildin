@@ -1,4 +1,5 @@
 .env
+venv/
 
 # Ignorar todos los directorios __pycache__
 **/__pycache__/
@@ -10,7 +11,10 @@
 /datasets/
 
 models/model_datasets/
+models/trained_models/
+models
 
 .DS_Store
+spec/
 
 *.db

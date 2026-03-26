@@ -14,3 +14,6 @@ seaborn==0.13.1
 mysql-connector-python==8.3.0
 scikit-learn==1.6.1
 load_dotenv
+streamlit-authenticator==0.2.3
+bcrypt>=4.0.0
+PyYAML>=6.0
