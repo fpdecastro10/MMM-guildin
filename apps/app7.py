@@ -47,7 +47,7 @@ def update_importador_sales_all():
                 progress_bar.progress(index_progress / len(TABLES_SALES))
                 time.sleep(0.3)
     except Exception as e:
-        st.write(f"Error: No se pudo actualizar la tabla de ventas, debe actualizar la base de datos primero")
+        st.error(f"Error actualizando tabla de ventas: {e}")
 
 
 def update_datasets():
@@ -67,7 +67,7 @@ def update_datasets():
                 progress_bar.progress(index_progress / len(DATASET_DATE))
                 time.sleep(0.3)
     except Exception as e:
-        st.write(f"Error: No se pudo actualizar la tabla de ventas, debe actualizar la base de datos primero")
+        st.error(f"Error actualizando datasets: {e}")
 
 def main():
     # Lógica de la primera aplicación

@@ -71,7 +71,7 @@ DATASET_DATE = [
             importador_sales_All ON 
                 importador_sales_All.id_store_id = asignador_store_groups_productos_stores.id_store_id AND
                 importador_sales_All.sku_id = asignador_store_groups_productos.sku_id AND
-                CAST(importador_sales_All.ISOweek AS SIGNED) = CAST(campaign_group_sku_id.yearweek AS SIGNED) + 2
+                CAST(importador_sales_All.ISOweek AS INTEGER) = CAST(campaign_group_sku_id.yearweek AS INTEGER) + 2
 
         LEFT JOIN asignador_store_groups
             ON asignador_store_groups_productos.store_group_id = asignador_store_groups.id
@@ -208,7 +208,7 @@ DATASET_DATE = [
             importador_sales_All ON 
                 importador_sales_All.id_store_id = asignador_store_groups_productos_stores.id_store_id AND
                 importador_sales_All.sku_id = asignador_store_groups_productos.sku_id AND
-                CAST(importador_sales_All.ISOweek AS SIGNED) = CAST(campaign_group_sku_id.yearweek AS SIGNED) + 1
+                CAST(importador_sales_All.ISOweek AS INTEGER) = CAST(campaign_group_sku_id.yearweek AS INTEGER) + 1
 
         LEFT JOIN asignador_store_groups
             ON asignador_store_groups_productos.store_group_id = asignador_store_groups.id
@@ -296,7 +296,7 @@ DATASET_DATE = [
             importador_sales_All.ISOweek
         ) as storeGroupISOweekSales
             on storeGroupISOweekSales.store_group_id = storeGroup_campaignId.store_group_id
-            and CAST(storeGroupISOweekSales.ISOweek AS SIGNED) = CAST(campaignUnionsView.yearweek AS SIGNED) + 1
+            and CAST(storeGroupISOweekSales.ISOweek AS INTEGER) = CAST(campaignUnionsView.yearweek AS INTEGER) + 1
         """
     },
     {

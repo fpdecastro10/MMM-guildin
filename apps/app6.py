@@ -27,7 +27,7 @@ pio.renderers.default = 'iframe'
 if 'data_whole_sg_wp' in st.session_state:
     data_whole_sg_wp = st.session_state.data_whole_sg_wp
 else:
-    data_whole_sg_wp = pd.read_csv('datasetss/datasetCampignSalesNew.csv')
+    data_whole_sg_wp = pd.read_csv('datasets/datasetCampignSalesNew.csv')
     data_whole_sg_wp['concat_store_group_name'] = data_whole_sg_wp["store_group_id"].astype(str) + " - " + data_whole_sg_wp["name"]
     # Completamos los valores nan en tabla medio con 'No Campaign'. Hay semanas donde se vendio pero no se le hizo campaigns.
     data_whole_sg_wp['tabla_medio'] = data_whole_sg_wp['tabla_medio'].fillna('No Campaign')
