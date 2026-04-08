@@ -65,6 +65,12 @@ TABLES_SALES = [
 ]
 
 
+def sanitize_df_for_sqlite(df):
+    for col in df.select_dtypes(include=['uint64']).columns:
+        df[col] = df[col].astype('int64')
+    return df
+
+
 def update_db_local_guilding(table_name):
     # Configuración de la conexión a la base de datos de destino
 
@@ -123,7 +129,7 @@ def update_db_local_guilding(table_name):
                     SELECT *
                     FROM {table_name}
                 '''
-                df = pd.read_sql(query, source_connector)
+                df = sanitize_df_for_sqlite(pd.read_sql(query, source_connector))
                 df.to_sql(
                     name=table_name,
                     con=sink_engine,
@@ -135,7 +141,7 @@ def update_db_local_guilding(table_name):
                 SELECT *
                 FROM {table_name}
             '''
-            df = pd.read_sql(query, source_connector)
+            df = sanitize_df_for_sqlite(pd.read_sql(query, source_connector))
             df.to_sql(
                 name=table_name,
                 con=sink_engine,
