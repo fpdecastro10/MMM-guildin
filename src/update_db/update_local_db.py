@@ -99,10 +99,10 @@ def update_db_local_guilding(table_name):
 
     # Tables to update
     # Create a local sqlite3 database
-    sink_connection = sqlite3.connect('database_guilding_local.db')
+    sink_connection = sqlite3.connect('data/database_guilding_local.db')
     sink_cursor = sink_connection.cursor()
     sink_engine = create_engine(
-        'sqlite:///database_guilding_local.db',
+        'sqlite:///data/database_guilding_local.db',
         echo=False
     )
 
@@ -157,7 +157,7 @@ def update_db_local_guilding(table_name):
 
 def delete_table_importador_sales_all():
 
-    sink_connection = sqlite3.connect('database_guilding_local.db')
+    sink_connection = sqlite3.connect('data/database_guilding_local.db')
     sink_cursor = sink_connection.cursor()
     try:
         query_drop_sales_all = "DROP TABLE importador_sales_All"
@@ -169,9 +169,9 @@ def delete_table_importador_sales_all():
 
 def update_sales_all(table_name):
 
-    sink_connection = sqlite3.connect('database_guilding_local.db')
+    sink_connection = sqlite3.connect('data/database_guilding_local.db')
     sink_engine = create_engine(
-        'sqlite:///database_guilding_local.db',
+        'sqlite:///data/database_guilding_local.db',
         echo=False
     )
 
@@ -205,9 +205,9 @@ def update_sales_all(table_name):
 
 def create_sub_tables():
 
-    sink_connection = sqlite3.connect('database_guilding_local.db')
+    sink_connection = sqlite3.connect('data/database_guilding_local.db')
     sink_engine = create_engine(
-        'sqlite:///database_guilding_local.db',
+        'sqlite:///data/database_guilding_local.db',
         echo=False
     )
 
@@ -265,6 +265,18 @@ def create_sub_tables():
             index=False
         )
 
+    indexes = [
+        "CREATE INDEX IF NOT EXISTS idx_isa_store    ON importador_sales_All (id_store_id)",
+        "CREATE INDEX IF NOT EXISTS idx_isa_sku      ON importador_sales_All (sku_id)",
+        "CREATE INDEX IF NOT EXISTS idx_isa_country  ON importador_sales_All (country_id)",
+        "CREATE INDEX IF NOT EXISTS idx_isa_isoweek  ON importador_sales_All (ISOweek)",
+        "CREATE INDEX IF NOT EXISTS idx_cuv_campaign ON campaignUnionsView (campaign_id)",
+        "CREATE INDEX IF NOT EXISTS idx_cuv_yearweek ON campaignUnionsView (yearweek)",
+    ]
+    for idx in indexes:
+        sink_connection.execute(idx)
+    sink_connection.commit()
+
     sink_connection.close()
 
 
@@ -276,7 +288,7 @@ def write_query_to_dataset(data_dataset):
     with open(path_to_dataset, "w", newline="", encoding="utf-8") as f:
         f.write(data_dataset["header"])
 
-    with sqlite3.connect('database_guilding_local.db') as sink_connection:
+    with sqlite3.connect('data/database_guilding_local.db') as sink_connection:
         sink_cursor = sink_connection.cursor()
 
         # Ejecutar la consulta y obtener los resultados

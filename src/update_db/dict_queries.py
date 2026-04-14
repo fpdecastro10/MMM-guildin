@@ -97,7 +97,7 @@ DATASET_DATE = [
         "query": """
         SELECT 
 
-            asignador_store_groups.`name` as name_storeGroup,
+            asignador_store_groups.name as name_storeGroup,
             asignador_store_groups.campaign as campaign_storeGroup,
 
             importador_productos.name as name_product,
@@ -125,17 +125,15 @@ DATASET_DATE = [
         LEFT JOIN importador_productos
             ON asignador_store_groups_productos.sku_id = importador_productos.id
         LEFT JOIN importador_sales_All
-                ON importador_sales_All.id_store_id = asignador_store_groups_productos_stores.id_store_id AND
-                asignador_store_groups_productos.sku_id = importador_sales_All.sku_id
+            ON importador_sales_All.id_store_id = asignador_store_groups_productos_stores.id_store_id
+            AND importador_sales_All.sku_id = asignador_store_groups_productos.sku_id
+            AND importador_sales_All.country_id = (SELECT id FROM importador_paises WHERE country_name = 'USA' LIMIT 1)
+            AND importador_sales_All.ISOweek >= 202200
         LEFT JOIN importador_retailers
             ON importador_retailers.id = importador_stores.retailer_id
-        LEFT JOIN importador_paises
-                ON importador_paises.id = importador_sales_All.country_id
         WHERE 
             asignador_store_groups_productos.date_from IS NOT NULL AND
-            asignador_store_groups_productos.date_to IS NOT NULL AND
-            importador_sales_All.ISOweek >= 202200 AND
-            importador_paises.country_name = 'USA'
+            asignador_store_groups_productos.date_to IS NOT NULL
     """
     },
     {

@@ -8,10 +8,13 @@ venv/
 *.py[cod]
 *$py.class
 
-/datasets/
-
 models/
-datasets/
+
+datasets/*
+!datasets/.gitkeep
+
+data/*
+!data/.gitkeep
 
 .DS_Store
 spec/
