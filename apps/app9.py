@@ -154,7 +154,7 @@ def train_model(campaign_key, sg_key):
             "adstock_alphas": experiment.best_trial.user_attrs["adstock_alphas"],
             "params": experiment.best_trial.user_attrs["params"]
         }
-        st.write(f"✅ El modelo del storegroup {sg_key} ha terminado de entrenarse.")
+        st.write(f"✅ El modelo del store group {sg_key} ha terminado de entrenarse.")
     except Exception as error:
         st.write(error)
 
@@ -176,9 +176,9 @@ def store_group_df(sg_key):
 
         fig.update_layout(
             title="Gráfico con dos ejes Y",
-            xaxis=dict(title="Date"),
-            yaxis=dict(title="Valores de A y B"),
-            yaxis2=dict(title="Sales", overlaying='y', side='right'),
+            xaxis=dict(title="Fecha"),
+            yaxis=dict(title="Inversión"),
+            yaxis2=dict(title="Ventas", overlaying='y', side='right'),
         )
 
         st.plotly_chart(fig)
@@ -194,7 +194,7 @@ def main():
 
     list_campaign = table_pivoted['campaign'].unique().tolist()
     selected_campaign = st.selectbox(
-        "Seleccione la campaña donde pertenece el SG",
+        "Seleccione la campaña a la que pertenece el SG",
         list_campaign
     )
 
@@ -210,7 +210,7 @@ def main():
             train_model(selected_campaign, sg)
 
     selected_sg = st.selectbox(
-        "Seleccione el SG para el cual quiere ver el gráfico",
+        "Seleccione el SG para ver el gráfico",
         list_store_group
     )
 

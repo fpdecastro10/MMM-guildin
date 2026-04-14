@@ -165,7 +165,7 @@ def second_approach(input_number,list_seleceted_campaign,bool_execute):
         df_sales_filter_by_date_list_StoreGroup = data_sw_1.query("campaign in @list_seleceted_campaign")
         df_sales_filter_by_date_list_StoreGroup["Store Group"] = df_sales_filter_by_date_list_StoreGroup["store_group_id"].astype(str) + " - " + df_sales_filter_by_date_list_StoreGroup["name"]
         storeGroupList = df_sales_filter_by_date_list_StoreGroup["Store Group"].unique().tolist()
-        storeGroupSelected = st.multiselect("Seleccione los stores groups que desea quitar de la estimación de distribución",storeGroupList)
+        storeGroupSelected = st.multiselect("Seleccione los Store Groups que desea quitar de la estimación de distribución",storeGroupList)
 
         new_list_with_sg = [elemento for elemento in storeGroupList if elemento not in storeGroupSelected]
 
@@ -392,7 +392,7 @@ def new_client(camaping_new_client, investment, selectedStoreGroups, dict_shap):
     df_filter_by_camp_time["Store Group"] = df_filter_by_camp_time["id_storeGroup"].astype(str) + " - " + df_filter_by_camp_time["name_storeGroup"]
 
     list_stores_grpups = df_filter_by_camp_time["Store Group"].unique().tolist()
-    storeGroupSelected = st.multiselect("Seleccione los stores groups que desea quitar de la distribución",list_stores_grpups)
+    storeGroupSelected = st.multiselect("Seleccione los Store Groups que desea quitar de la distribución",list_stores_grpups)
 
     df_filter_by_camp_time = df_filter_by_camp_time.query("`Store Group` not in @storeGroupSelected")
     df_filter_by_camp_time = df_filter_by_camp_time.groupby("Store Group").agg({"id_store_retailer":"nunique","sales":"sum"}).reset_index()
@@ -483,7 +483,7 @@ def main():
         all_sg_with_shap_in = list(shaps_sg.keys())
         list_store_group_coeff_shap_in = ["Seleccionar todos"] + all_sg_with_shap_in
         selection_storeGroups_in = st.multiselect(
-            "Seleccione los Storegroups que desea utilizar para predecir inversión inicial",
+            "Seleccione los Store Groups que desea utilizar para predecir inversión inicial",
             list_store_group_coeff_shap_in
         )
 
@@ -509,7 +509,7 @@ def main():
 
         all_sg_with_shap = list(shaps_sg.keys())
         list_store_group_coeff_shap = ["Seleccionar todos"] + all_sg_with_shap
-        selection_storeGroups = st.multiselect("Seleccione los Storegroups que desea utilizar para predecir distribución entre canales",list_store_group_coeff_shap)
+        selection_storeGroups = st.multiselect("Seleccione los Store Groups que desea utilizar para predecir distribución entre canales",list_store_group_coeff_shap)
 
         if "Seleccionar todos" in selection_storeGroups:
             selection_storeGroups = all_sg_with_shap

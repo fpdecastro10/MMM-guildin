@@ -28,7 +28,7 @@ def update_db_local_with_each_table():
                 progress_bar.progress(index_progress / len(TABLES))
                 time.sleep(0.3)
     except Exception as e:
-        st.write(f"Error: agregue el ip {get_public_ip()} a la lista de permitidos en el servidor")
+        st.write(f"Error: agregue la IP {get_public_ip()} a la lista de IPs permitidas en el servidor")
 
 
 def update_importador_sales_all():
@@ -86,7 +86,7 @@ def main():
 
     if st.button(
         "Actualizar tabla de ventas",
-        help="Impacta los nuevos registros nuevos de tabla de ventas offline agregado por clientes."
+        help="Impacta los nuevos registros de la tabla de ventas offline agregados por clientes."
     ):
         update_importador_sales_all()
 

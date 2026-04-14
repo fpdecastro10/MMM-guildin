@@ -88,9 +88,9 @@ if 'data_whole_sg_wp' in st.session_state:
 else:
     data_whole_sg_wp = pd.read_csv('datasets/datasetCampignSalesNew.csv')
     data_whole_sg_wp['concat_store_group_name'] = data_whole_sg_wp["store_group_id"].astype(str) + " - " + data_whole_sg_wp["name"]
-    # Completamos los valores nan en tabla medio con 'No Campaign'. Hay semanas donde se vendio pero no se le hizo campaigns.
+    # Completamos los valores nan en tabla medio con 'No Campaign'. Hay semanas donde se vendió pero no se hicieron campañas.
     data_whole_sg_wp['tabla_medio'] = data_whole_sg_wp['tabla_medio'].fillna('No Campaign')
-    # Completamos los costo de campaña con 0. En las semanas que no se hizo campañas
+    # Completamos los costos de campaña con 0. En las semanas que no se hicieron campañas
     data_whole_sg_wp['cost_campaign'] = data_whole_sg_wp['cost_campaign'].fillna(0)
     # Cuando no tenemos información de semanas, le agregamos "-"
     data_whole_sg_wp["yearweek"] = data_whole_sg_wp["yearweek"].fillna("-")
@@ -508,7 +508,7 @@ def calculated_shape_values(list_sg=list_store_group):
 
         # Define el tamaño del conjunto de prueba en términos de número de filas
         test_size = min(15, num_filas // n_splits)
-        # se creearan tres divisiones 
+        # se crearán tres divisiones
         tscv = TimeSeriesSplit(n_splits=n_splits, test_size = test_size)
 
         adstock_features_params = {}
@@ -589,7 +589,7 @@ def calculated_increment_sales(
     k.columns=['reason','score']
 
     # Conseguimos el promedio de las últimas 4 semanas
-    # Cirterio asumido, tomamos el promedio de las últimos 3 meses y si no tiene datos
+    # Criterio asumido: tomamos el promedio de los últimos 3 meses y si no tiene datos
     # tomamos el promedio de todos los datos
 
     media_channels_reason = k['reason'].tolist()
@@ -687,7 +687,7 @@ def list_investment_store_group(waiting_increase, list_sg=list_store_group):
                 table_pivoted_r['concat_store_group_name'] == store_group
             ]   
 
-            # Renombramos las columnas de targe y date para esetudiar su estacionalidad
+            # Renombramos las columnas de target y date para estudiar su estacionalidad
             # Nos quedamos con las columnas 'ds', 'y' y 'concat_store_group_name'
             table_prophet_sg = table_pivoted_sg.rename(
                 columns={'sales': 'y', 'ISOweek': 'ds'}
@@ -721,7 +721,7 @@ def list_investment_store_group(waiting_increase, list_sg=list_store_group):
 
             # Define el tamaño del conjunto de prueba en términos de número de filas
             test_size = min(15, num_filas // n_splits)
-            # se creearan tres divisiones 
+            # se crearán tres divisiones
             tscv = TimeSeriesSplit(n_splits=n_splits, test_size = test_size)
 
             OPTUNA_TRIALS = 1000
@@ -773,7 +773,7 @@ def sale_simulation_sg(sg, dict_investment_media, date_to_estimate):
         table_pivoted_r['concat_store_group_name'] == sg
     ]   
     
-    # Renombramos las columnas de targe y date para esetudiar su estacionalidad
+    # Renombramos las columnas de target y date para estudiar su estacionalidad
     # Nos quedamos con las columnas 'ds', 'y' y 'concat_store_group_name'
     table_prophet_sg = table_pivoted_sg.rename(
         columns={'sales': 'y', 'ISOweek': 'ds'}
@@ -805,7 +805,7 @@ def sale_simulation_sg(sg, dict_investment_media, date_to_estimate):
 
     # Define el tamaño del conjunto de prueba en términos de número de filas
     test_size = min(15, num_filas // n_splits)
-    # se creearan tres divisiones 
+    # se crearán tres divisiones
     tscv = TimeSeriesSplit(n_splits=n_splits, test_size = test_size)
 
     OPTUNA_TRIALS = 1000

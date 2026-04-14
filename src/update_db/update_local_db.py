@@ -1,4 +1,4 @@
-# Importamos la librerias que hacen falta
+# Importamos las librerías que hacen falta
 import pandas as pd
 import mysql.connector
 from sqlalchemy import create_engine
@@ -200,7 +200,7 @@ def update_sales_all(table_name):
         index=False
     )
     sink_connection.close()
-    return f"Datos transmitidos con éxitos de la tabla {table_name}"
+    return f"Datos transmitidos con éxito de la tabla {table_name}"
 
 
 def create_sub_tables():

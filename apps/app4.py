@@ -52,15 +52,15 @@ def main():
             index_storeGroup[nueva_key] = row["id_storeGroup"]
 
         if index_storeGroup == {}:
-            botones = ['No tiene sufieciente datos de campaña']
+            botones = ['No tiene suficiente datos de campaña']
             selected_filter = st.selectbox(
-                "Seleccione un storegroup:",
+                "Seleccione un Store Group:",
                 botones
             )
         else:
             botones = [key for key in index_storeGroup]
             selected_filter = st.selectbox(
-                "Seleccione un storegroup:",
+                "Seleccione un Store Group:",
                 botones
             )
 
@@ -222,7 +222,7 @@ def main():
         "<td style='text-align:center'>"
     ).replace(
         "<table border='1' class='dataframe'>",
-        "<table border='1' class='dataframe' sytle='margin:auto'>"
+        "<table border='1' class='dataframe' style='margin:auto'>"
     ).replace(
         "<th>",
         "<th style='text-align:center'>"

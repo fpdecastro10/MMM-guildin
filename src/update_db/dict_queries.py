@@ -356,7 +356,7 @@ DATASET_DATE = [
         -- ON CAST(sales_store_group.ISOweek AS SIGNED) = CAST(campaign_table.yearweek AS SIGNED) + 2
             ON 
             /*
-            Lo que hacemos aca es hacer el match normal entre con dos semanas de delay, y tambien contemplar el caso en que se cambie de año
+            Lo que hacemos acá es hacer el match normal con dos semanas de delay, y también contemplar el caso en que se cambie de año
             */
             (CASE
                 WHEN 

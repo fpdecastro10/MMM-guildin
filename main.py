@@ -23,7 +23,7 @@ if not os.path.isfile(file_path):
 
 
 def main():
-    st.title("Seleccione una aplicacion:")
+    st.title("Seleccione una aplicación:")
     imagen_local = './assets/img/logo2x.png'
     st.sidebar.image(imagen_local, use_column_width=True)
     app_selection = st.selectbox(
@@ -33,7 +33,7 @@ def main():
             "2. Predicción de sales + analytics seasonality, trend & media",
             "3. Tendencia de Ventas en Stores",
             "4. Predicción de sales - Regresión polinomial",
-            "5. Actualización de la Base de datos, periódos de campaña y entrenamientos de modelos"
+            "5. Actualización de la Base de datos, períodos de campaña y entrenamientos de modelos"
         ]
     )
 

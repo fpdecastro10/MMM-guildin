@@ -7,7 +7,7 @@ def main():
         "",
         [
             "1. Actualización de la Base de datos",
-            "2. Configuración periodos de campaña de SGs",
+            "2. Configuración de períodos de campaña de SGs",
             "3. Entrenamiento de modelos",
             "4. Actualizar Tableau DB"
         ]

@@ -29,9 +29,9 @@ if 'data_whole_sg_wp' in st.session_state:
 else:
     data_whole_sg_wp = pd.read_csv('datasets/datasetCampignSalesNew.csv')
     data_whole_sg_wp['concat_store_group_name'] = data_whole_sg_wp["store_group_id"].astype(str) + " - " + data_whole_sg_wp["name"]
-    # Completamos los valores nan en tabla medio con 'No Campaign'. Hay semanas donde se vendio pero no se le hizo campaigns.
+    # Completamos los valores nan en tabla medio con 'No Campaign'. Hay semanas donde se vendió pero no se hicieron campañas.
     data_whole_sg_wp['tabla_medio'] = data_whole_sg_wp['tabla_medio'].fillna('No Campaign')
-    # Completamos los costo de campaña con 0. En las semanas que no se hizo campañas
+    # Completamos los costos de campaña con 0. En las semanas que no se hicieron campañas
     data_whole_sg_wp['cost_campaign'] = data_whole_sg_wp['cost_campaign'].fillna(0)
     # Cuando no tenemos información de semanas, le agregamos "-"
     data_whole_sg_wp["yearweek"] = data_whole_sg_wp["yearweek"].fillna("-")
@@ -52,7 +52,7 @@ else:
     data_whole_sg = df_builder_tablaMedio(data_whole_sg_wp,list_group,dict_group)
     data_whole_sg_columns = data_whole_sg.columns.tolist()
     data_whole_sg_columns.remove('No Campaign')
-    # Eliminas las columnas 'No Campaign'
+    # Eliminamos las columnas 'No Campaign'
     table_pivoted_r = data_whole_sg[data_whole_sg_columns]
     st.session_state.table_pivoted_r = table_pivoted_r
 
@@ -110,14 +110,14 @@ def info_shap_value(dataframe_shap, features):
                 list_neg.append(name_variable)
 
     if len(list_post) == 2:
-        list_msg.append(f"Los medios {list_post[0]} y {list_post[1]} influye positivamente en las ventas")
+        list_msg.append(f"Los medios {list_post[0]} y {list_post[1]} influyen positivamente en las ventas")
     if len(list_post) == 1:
-        list_msg.append(f"Los medios {list_post[0]} influye positivamente en las ventas")
+        list_msg.append(f"El medio {list_post[0]} influye positivamente en las ventas")
 
     if len(list_neg) == 2:
-        list_msg.append(f"Los medios {list_neg[0]} y {list_neg[1]} no explican en las ventas")
+        list_msg.append(f"Los medios {list_neg[0]} y {list_neg[1]} no explican las ventas")
     if len(list_neg) == 1:
-        list_msg.append(f"Los medios {list_neg[0]} no explica las ventas")
+        list_msg.append(f"El medio {list_neg[0]} no explica las ventas")
 
     return list_msg
 
@@ -167,7 +167,7 @@ def arbol_regressor(store_group_name):
         final_data_store_group[tabla_medio] = final_data_store_group[tabla_medio].fillna(0)
     final_data_store_group
 
-    # se creearan tres divisiones
+    # se crearán tres divisiones
     tscv = TimeSeriesSplit(n_splits=3, test_size=20)
 
     adstock_features_params = {}
@@ -305,17 +305,17 @@ def arbol_regressor(store_group_name):
         name_variable = tabla_medio.replace(" Weekly", "")
         list_input[tabla_medio] = st.number_input(f"Seleccione el monto a invertir semanalmente en {name_variable}: ", value=0)
 
-    if st.button("Predecir sales"):
+    if st.button("Predecir ventas"):
         for key, value in list_input.items():
             prediction_trend[key] = value
         prediction = result["model"].predict(prediction_trend)
-        prediction_str = f"La predicción de ventas es: {round(prediction[0])} un"
+        prediction_str = f"La predicción de ventas es: {round(prediction[0])} unidades"
         st.markdown(f"<h3 style='font-size: 25px;margin-top:30px;margin-bottom:15px'>{prediction_str}</h3>", unsafe_allow_html=True)
 
     st.markdown("<h3 style='font-size: 25px;margin-top:30px;margin-bottom:15px'>Predicción de crecimiento porcentual</h3>", unsafe_allow_html=True)
     input_investment = st.number_input("Ingrese el crecimiento porcentual deseado por semana (%): ", value=0)
 
-    if st.button("Predecir investment"):
+    if st.button("Predecir inversión"):
         calculated_investment = calculated_increment_sales(
                                 result['model'],
                                 input_investment,

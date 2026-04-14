@@ -9,7 +9,7 @@ dict_convertion_prefix = {
 }
 dict_convertion_mssg = {
     "No campaign": "Intervalos de fechas donde no hubo campañas corriendo en ese SG",
-    "Campaign": "Intervalo de fechas donde si hubo campañas corriendo"
+    "Campaign": "Intervalo de fechas donde sí hubo campañas corriendo"
 }
 
 
@@ -182,7 +182,7 @@ def create_campaign():
 def main():
     # Lógica de la primera aplicación
     st.markdown(
-        '<h1 style="font-size: 34px;">Actualizacion de la información del modelo</h1>',
+        '<h1 style="font-size: 34px;">Actualización de la información del modelo</h1>',
         unsafe_allow_html=True
     )
 

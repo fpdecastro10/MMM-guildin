@@ -72,7 +72,7 @@ def main():
         )
 
         delay_dataset = st.radio(
-            "Seleccione el delay del dataset",
+            "Seleccione el desfase del dataset",
             ["1 semana", "2 semanas"]
         )
 
@@ -108,7 +108,7 @@ def main():
                 index_storeGroup.pop(key)
 
         if index_storeGroup == {}:
-            botones = ['No tiene sufieciente datos de campaña']
+            botones = ['No tiene suficiente datos de campaña']
             selected_filter = st.selectbox(
                 "Seleccione el Store Group:", botones
             )
@@ -165,7 +165,7 @@ def main():
             )['sales']
         )
 
-        # Constuimos el data frame con sku_id
+        # Construimos el data frame con sku_id
         filtered_data_product = filter_data_storeGroup.groupby(
             ["id_sku", "name_product"]
         ).sum().reset_index()[

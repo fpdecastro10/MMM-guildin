@@ -424,7 +424,7 @@ def calculated_incerement_sales(model, growing, shap_values, data_input_nontrans
     k.columns = ["reason", "score"]
 
     # Conseguimos el promedio de las últimas 4 semanas
-    # Cirterio asumido, tomamos el promedio de las últimos 3 meses y si no tiene datos
+    # Criterio asumido: tomamos el promedio de los últimos 3 meses y si no tiene datos
     # tomamos el promedio de todos los datos
     date_to_estimate = datetime.today()
     date_to_trashold = date_to_estimate - timedelta(days=1 * 30)
@@ -450,7 +450,7 @@ def calculated_incerement_sales(model, growing, shap_values, data_input_nontrans
     media_channels_reason.remove("trend")
     media_channels_reason.remove("season")
 
-    # Si media_channels es vacia quiere decir que facebook y google no explican ventas. No sirve.
+    # Si media_channels es vacía quiere decir que Facebook y Google no explican ventas. No sirve.
     if media_channels_reason == []:
         return 0
 
