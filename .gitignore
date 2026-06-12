@@ -1,4 +1,5 @@
 .env
+.env.rds
 venv/
 
 # Ignorar todos los directorios __pycache__
